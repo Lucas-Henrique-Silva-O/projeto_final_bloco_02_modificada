@@ -25,7 +25,7 @@ export class Jogo{
     @Column({type: "varchar", length: 5000})
     foto: string;
 
-    //ManyToOne() => categoria.jogo
+
 
     @ManyToOne(() => Categoria, (categoria) => categoria.jogo, {
         onDelete: "CASCADE"

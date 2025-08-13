@@ -19,7 +19,7 @@ export class JogoService{
             }
         });
 
-        // SELECT * FROM tb_postagens;
+        
     }
 
     async findById(id: number): Promise<Jogo> {
@@ -33,14 +33,14 @@ export class JogoService{
             }
         });
 
-        // Checar se o jogo não foi encontrado
+        
         if (!jogo)
             throw new HttpException('Jogo não encontrada!', HttpStatus.NOT_FOUND);
 
-        // Retornar o jogo, caso ele exista
+        
         return jogo;
 
-        // SELECT * FROM tb_postagens WHERE id = ?;
+        
     }
 
     async findByNome(nome: string): Promise<Jogo[]>{
@@ -53,12 +53,12 @@ export class JogoService{
             }
         })
 
-        // SELECT * FROM tb_postagens WHERE nome LIKE '%nome%';
+        
     }
 
     async create(jogo: Jogo): Promise<Jogo>{
 
-        // Caso o categoria tenha sido preenchido
+        
         if (jogo.categoria){
 
             let categoria = await this.categoriaService.findById(jogo.categoria.id)
@@ -69,21 +69,21 @@ export class JogoService{
             return await this.jogoRepository.save(jogo);
         }
 
-        // Caso o categoria não tenha sido preenchido
+        
         return await this.jogoRepository.save(jogo);
 
-         // INSERT INTO tb_postagens (nome, texto, data) VALUES (?, ?, server);
+         
     }
 
     async update(jogo: Jogo): Promise<Jogo>{
         
         let buscaJogo: Jogo = await this.findById(jogo.id);
         
-        // Verifica se o jogo existe
+        
         if (!buscaJogo || !jogo.id)
             throw new HttpException('Jogo não foi encontrado!', HttpStatus.NOT_FOUND)
 
-         // Caso a categoria tenha sido preenchida
+        
         if (jogo.categoria){
 
             let categoria = await this.categoriaService.findById(jogo.categoria.id)
@@ -96,7 +96,7 @@ export class JogoService{
 
         return await this.jogoRepository.save(jogo);
 
-         // UPDATE tb_postagens SET nome = ?, texto = ?, data = server WHERE id = ?;
+         
 
     }
 
