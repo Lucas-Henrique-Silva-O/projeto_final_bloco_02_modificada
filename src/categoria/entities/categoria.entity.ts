@@ -1,17 +1,15 @@
-import { IsNotEmpty } from "class-validator";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { Jogo } from "../../jogos/entities/jogo.entity";
 
-@Entity({name: "tb_categorias"})
-export class Categoria{
+@Entity({ name: "tb_categorias" })
+export class Categoria {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @PrimaryGeneratedColumn()    
-    id: number
+  @Column({ length: 100, nullable: false })
+  nome: string;
 
-    @IsNotEmpty()
-    @Column({length: 255, nullable: false})
-    tipo: string
-    
-    @OneToMany(() => Jogo, (jogo) => jogo.categoria)
-    jogo: Jogo[];
+  // Uma categoria pode ter vários jogos
+  @OneToMany(() => Jogo, (jogo) => jogo.categoria)
+  jogos: Jogo[];
 }
