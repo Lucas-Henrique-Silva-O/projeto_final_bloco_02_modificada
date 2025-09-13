@@ -41,6 +41,7 @@ export class CategoriaController {
     return this.categoriaService.create(categoria);
   }
 
+
   @Put()
   @HttpCode(HttpStatus.OK)
   update(@Body() categoria: Categoria): Promise<Categoria> {
